@@ -25,6 +25,9 @@ for (i = 0; i < gridCount; i++) {
         gridSquare.style.width = gridSquarePixels;
         gridSquare.style.height = gridSquarePixels;
         gridSquare.style.backgroundColor = '#A4FBE7'
+        gridSquare.addEventListener('mouseenter', (e) => {
+            gridSquare.style.backgroundColor = '#C2455E';
+        });
         gridRowContainer.appendChild(gridSquare);
     };
 
