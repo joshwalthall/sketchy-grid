@@ -14,12 +14,16 @@ let gridSquareSize = (gridContainerSize / gridCount);
 
 setButtonContainerStyle();
 createChangeGridSizeButton();
+createClearGridButton();
+justifyButtonContainer();
 setGridContainerStyle();
 createGrid();
 
 function setButtonContainerStyle() {
     buttonContainer.style.display = 'flex';
+    buttonContainer.style.flexDirection = 'column';
     buttonContainer.style.flex = 'auto';
+    buttonContainer.style.gap = '25px';
     buttonContainer.style.padding = '30px 0px';
     buttonContainer.style.margin = 'auto';
 };
@@ -28,6 +32,15 @@ function createChangeGridSizeButton() {
     const changeGridSizeButton = document.createElement('button');
     changeGridSizeButton.textContent = 'Change Grid Size';
     buttonContainer.appendChild(changeGridSizeButton);
+};
+
+function createClearGridButton() {
+    const clearGridButton = document.createElement('button');
+    clearGridButton.textContent = 'Clear Grid';
+    buttonContainer.appendChild(clearGridButton);
+};
+
+function justifyButtonContainer() {
     buttonContainer.style.justifyContent = 'center';
 };
 
