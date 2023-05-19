@@ -1,7 +1,8 @@
 // Initialize variable to hold grid size
 let gridCount = 64;
 
-// Initialize variable to hold grid container element
+// Initialize variables to hold containers
+const buttonContainer = document.querySelector("#button-container");
 const gridContainer = document.querySelector("#grid-container");
 
 // Initialize variable to hold grid container size as an integer and a 'px' string
@@ -11,8 +12,24 @@ let gridContainerPixels = `${gridContainerSize}px`;
 // Get number of pixels per grid square by dividing grid container size by grid size
 let gridSquareSize = (gridContainerSize / gridCount);
 
+setButtonContainerStyle();
+createChangeGridSizeButton();
 setGridContainerStyle();
 createGrid();
+
+function setButtonContainerStyle() {
+    buttonContainer.style.display = 'flex';
+    buttonContainer.style.flex = 'auto';
+    buttonContainer.style.padding = '30px 0px';
+    buttonContainer.style.margin = 'auto';
+};
+
+function createChangeGridSizeButton() {
+    const changeGridSizeButton = document.createElement('button');
+    changeGridSizeButton.textContent = 'Change Grid Size';
+    buttonContainer.appendChild(changeGridSizeButton);
+    buttonContainer.style.justifyContent = 'center';
+};
 
 function setGridContainerStyle() {
     gridContainer.style.width = gridContainerPixels;
