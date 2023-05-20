@@ -10,12 +10,12 @@ const gridContainer = document.querySelector('#grid-container');
 let gridContainerSize = 700;
 let gridContainerPixels = `${gridContainerSize}px`;
 
-// Get number of pixels per grid square by dividing grid container size by grid size
-let gridSquareSize = (gridContainerSize / gridCount);
+// Initialize variable to hold grid square size in pixels
+let gridSquareSize = 0;
 
 function setButtonContainerStyle() {
     buttonContainer.style.display = 'flex';
-    buttonContainer.style.flexDirection = 'column';
+    // buttonContainer.style.flexDirection = 'column';
     buttonContainer.style.flex = 'auto';
     buttonContainer.style.gap = '25px';
     buttonContainer.style.padding = '30px 0px';
@@ -24,7 +24,7 @@ function setButtonContainerStyle() {
 
 function setButtonStyle(button) {
     const buttonColor = '#757575';
-    const buttonHoverColor = '#FFB300';
+    const buttonHoverColor = '#4DD0E1';
     button.style.backgroundColor = buttonColor;
     button.style.color = '#FFFFFF';
     button.style.border = 'none';
@@ -32,6 +32,7 @@ function setButtonStyle(button) {
     button.style.fontSize = '14px';
     button.style.fontWeight = '700';
     button.style.padding = '15px 20px';
+    button.style.transitionDuration = '0.2s';
     button.addEventListener('mouseenter', (e) => {
         button.style.backgroundColor = buttonHoverColor;
     });
@@ -40,11 +41,12 @@ function setButtonStyle(button) {
     });
 };
 
-function createChangeGridSizeButton() {
-    const changeGridSizeButton = document.createElement('button');
-    changeGridSizeButton.textContent = 'Change Grid Size';
-    setButtonStyle(changeGridSizeButton);
-    buttonContainer.appendChild(changeGridSizeButton);
+function createChangeGridCountButton() {
+    const changeGridCountButton = document.createElement('button');
+    changeGridCountButton.textContent = 'Change Grid Count';
+    setButtonStyle(changeGridCountButton);
+    changeGridCountButton.addEventListener('click', function () {changeGridCount();});
+    buttonContainer.appendChild(changeGridCountButton);
 };
 
 function createClearGridButton() {
@@ -77,6 +79,8 @@ function setGridContainerStyle() {
 }
 
 function createGrid() {
+    // Set grid square size based on grid count and grid container size
+    gridSquareSize = (gridContainerSize / gridCount);
     // Create "grid size" number of rows, each containing "grid size" number of divs
     for (i = 0; i < gridCount; i++) {
         // Create grid row container
@@ -101,8 +105,22 @@ function createGrid() {
     };
 };
 
+function changeGridCount() {
+    const promptMessage = "Please enter a new grid count as a whole number between 1 and 100"
+    let newGridCount = parseInt(prompt(promptMessage, `${gridCount}`));
+    
+    if (Number.isNaN(newGridCount)) {
+        alert("Invalid entry. Please try again.");
+    } else if (newGridCount < 1 || newGridCount > 100) {
+        alert("Grid count not within valid range. Please try again.");
+    } else {
+        gridCount = newGridCount;
+        clearGrid();
+    };
+};
+
 setButtonContainerStyle();
-createChangeGridSizeButton();
+createChangeGridCountButton();
 createClearGridButton();
 justifyButtonContainer();
 setGridContainerStyle();
