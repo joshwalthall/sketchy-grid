@@ -81,6 +81,9 @@ function setGridContainerStyle() {
 function createGrid() {
     // Set grid square size based on grid count and grid container size
     gridSquareSize = (gridContainerSize / gridCount);
+    // Initialize variables for empty and filled grid square colors
+    emptySquareColor = '#F5F5F5';
+    filledSquareColor = '#424242';
     // Create "grid size" number of rows, each containing "grid size" number of divs
     for (i = 0; i < gridCount; i++) {
         // Create grid row container
@@ -92,10 +95,15 @@ function createGrid() {
             let gridSquarePixels = `${gridSquareSize}px`;
             gridSquare.style.width = gridSquarePixels;
             gridSquare.style.height = gridSquarePixels;
-            gridSquare.style.backgroundColor = '#F5F5F5';
+            gridSquare.style.backgroundColor = emptySquareColor;
             // Make grid squares change color when mouse passes over them
             gridSquare.addEventListener('mouseenter', (e) => {
-                gridSquare.style.backgroundColor = '#424242';
+                gridSquare.style.transitionDuration = '0s';
+                gridSquare.style.backgroundColor = filledSquareColor;
+            });
+            gridSquare.addEventListener('mouseleave', (e) => {
+                gridSquare.style.transitionDuration = '10s';
+                gridSquare.style.backgroundColor = emptySquareColor;
             });
             gridRowContainer.appendChild(gridSquare);
         };
