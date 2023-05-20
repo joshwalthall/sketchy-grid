@@ -2,8 +2,9 @@
 let gridCount = 64;
 
 // Initialize variables to hold containers
-const buttonContainer = document.querySelector("#button-container");
-const gridContainer = document.querySelector("#grid-container");
+const main = document.querySelector('main');
+const buttonContainer = document.querySelector('#button-container');
+const gridContainer = document.querySelector('#grid-container');
 
 // Initialize variable to hold grid container size as an integer and a 'px' string
 let gridContainerSize = 700;
@@ -11,13 +12,6 @@ let gridContainerPixels = `${gridContainerSize}px`;
 
 // Get number of pixels per grid square by dividing grid container size by grid size
 let gridSquareSize = (gridContainerSize / gridCount);
-
-setButtonContainerStyle();
-createChangeGridSizeButton();
-createClearGridButton();
-justifyButtonContainer();
-setGridContainerStyle();
-createGrid();
 
 function setButtonContainerStyle() {
     buttonContainer.style.display = 'flex';
@@ -57,7 +51,15 @@ function createClearGridButton() {
     const clearGridButton = document.createElement('button');
     clearGridButton.textContent = 'Clear Grid';
     setButtonStyle(clearGridButton);
+    clearGridButton.addEventListener('click', function() {clearGrid();});
     buttonContainer.appendChild(clearGridButton);
+};
+
+function clearGrid() {
+    while (gridContainer.hasChildNodes()) {
+        gridContainer.removeChild(gridContainer.firstChild);
+    };
+    createGrid();
 };
 
 function justifyButtonContainer() {
@@ -98,6 +100,13 @@ function createGrid() {
         gridContainer.appendChild(gridRowContainer);
     };
 };
+
+setButtonContainerStyle();
+createChangeGridSizeButton();
+createClearGridButton();
+justifyButtonContainer();
+setGridContainerStyle();
+createGrid();
 
 // Create user entry pop-up button
 // When button is clicked, open pop-up to prompt for grid size
