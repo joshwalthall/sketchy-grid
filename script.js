@@ -28,15 +28,35 @@ function setButtonContainerStyle() {
     buttonContainer.style.margin = 'auto';
 };
 
+function setButtonStyle(button) {
+    const buttonColor = '#757575';
+    const buttonHoverColor = '#FFB300';
+    button.style.backgroundColor = buttonColor;
+    button.style.color = '#FFFFFF';
+    button.style.border = 'none';
+    button.style.borderRadius = '8px';
+    button.style.fontSize = '14px';
+    button.style.fontWeight = '700';
+    button.style.padding = '15px 20px';
+    button.addEventListener('mouseenter', (e) => {
+        button.style.backgroundColor = buttonHoverColor;
+    });
+    button.addEventListener('mouseleave', (e) => {
+        button.style.backgroundColor = buttonColor;
+    });
+};
+
 function createChangeGridSizeButton() {
     const changeGridSizeButton = document.createElement('button');
     changeGridSizeButton.textContent = 'Change Grid Size';
+    setButtonStyle(changeGridSizeButton);
     buttonContainer.appendChild(changeGridSizeButton);
 };
 
 function createClearGridButton() {
     const clearGridButton = document.createElement('button');
     clearGridButton.textContent = 'Clear Grid';
+    setButtonStyle(clearGridButton);
     buttonContainer.appendChild(clearGridButton);
 };
 
@@ -50,6 +70,8 @@ function setGridContainerStyle() {
     gridContainer.style.display = 'flex';
     gridContainer.style.flexDirection = 'column';
     gridContainer.style.flex = '0 0 0';
+    gridContainer.style.border = '8px solid #9E9E9E';
+    gridContainer.style.borderRadius = '8px';
 }
 
 function createGrid() {
@@ -64,10 +86,10 @@ function createGrid() {
             let gridSquarePixels = `${gridSquareSize}px`;
             gridSquare.style.width = gridSquarePixels;
             gridSquare.style.height = gridSquarePixels;
-            gridSquare.style.backgroundColor = '#A4FBE7'
+            gridSquare.style.backgroundColor = '#F5F5F5';
             // Make grid squares change color when mouse passes over them
             gridSquare.addEventListener('mouseenter', (e) => {
-                gridSquare.style.backgroundColor = '#C2455E';
+                gridSquare.style.backgroundColor = '#424242';
             });
             gridRowContainer.appendChild(gridSquare);
         };
